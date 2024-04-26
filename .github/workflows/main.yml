@@ -35,7 +35,7 @@ jobs:
       - run: |
           echo "::notice ::Value: $VALUE"
         env:
-          VALUE: ${{ needs.gv.outputs.value }}
+          VALUE: ${{ fromJSON(needs.gv.outputs.value) }}
   release:
     name: Release
     needs:
