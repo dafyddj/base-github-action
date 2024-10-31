@@ -1,16 +1,35 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "enabledManagers": [
+    "custom.regex",
     "github-actions",
     "pre-commit",
   ],
   "extends": [
     "config:recommended",
     ":enablePreCommit",
+    ":semanticCommitTypeAll(fix)",
     "helpers:pinGitHubActionDigestsToSemver",
-    "schedule:weekends",
+    "regexManagers:githubActionsVersions",
   ],
+  "customDatasources": {
+    "python-versions": {
+      "defaultRegistryUrlTemplate": "https://raw.githubusercontent.com/actions/python-versions/refs/heads/main/versions-manifest.json",
+      "transformTemplates": [
+        "{\"releases\": $ }",
+      ],
+    },
+  },
   "packageRules": [
+    {
+      "matchDatasources": ["custom.python-versions"],
+      "separateMinorPatch": true,
+    },
+    {
+      "matchDatasources": ["custom.python-versions"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+    },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch"],
@@ -24,5 +43,4 @@
       "automerge": true,
     },
   ],
-  "platformAutomerge": false,
 }
