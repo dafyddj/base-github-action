@@ -22,7 +22,7 @@ jobs:
       # renovate: datasource=custom.python-versions depName=actions/python-versions versioning=pep440
       PYTHON_VERSION: 3.14.0
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -36,7 +36,7 @@ jobs:
     outputs:
       value: ${{ steps.get-value.outputs.value }}
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - id: get-value
         name: Run this action
         uses: ./
@@ -69,7 +69,7 @@ jobs:
         with:
           ignore: Collect results
           token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Run `semantic-release`
         uses: codfish/semantic-release-action@6c65402abb31a48c3f7396d7d099da015be67c2b # v4.0.1
         id: sem-rel
