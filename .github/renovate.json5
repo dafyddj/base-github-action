@@ -1,46 +1,13 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": [
-    "custom.regex",
-    "github-actions",
-    "pre-commit",
-  ],
-  "extends": [
-    "config:recommended",
-    ":enablePreCommit",
-    ":semanticCommitTypeAll(fix)",
-    "helpers:pinGitHubActionDigestsToSemver",
-    "regexManagers:githubActionsVersions",
-  ],
-  "customDatasources": {
-    "python-versions": {
-      "defaultRegistryUrlTemplate": "https://raw.githubusercontent.com/actions/python-versions/refs/heads/main/versions-manifest.json",
-      "transformTemplates": [
-        "{\"releases\": $ }",
-      ],
-    },
-  },
-  "packageRules": [
-    {
-      "matchDatasources": ["custom.python-versions"],
-      "separateMinorPatch": true,
-    },
-    {
-      "matchDatasources": ["custom.python-versions"],
-      "matchUpdateTypes": ["patch"],
-      "automerge": true,
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "github-actions minor/patch",
-      "automerge": true,
-    },
-    {
-      "matchManagers": ["pre-commit"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "pre-commit hook minor/patch",
-      "automerge": true,
-    },
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    'github>techneg-it/.github',
+    'github>techneg-it/.github:check-jsonschema',
+    'github>techneg-it/.github:copier-new',
+    'github>techneg-it/.github:github-actions',
+    'github>techneg-it/.github:pre-commit',
+    'github>techneg-it/.github:python-versions',
+    'github>techneg-it/.github:weekly',
+    ':automergeStableNonMajor',
   ],
 }
